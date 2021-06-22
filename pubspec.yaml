@@ -51,6 +51,16 @@ flutter:
   uses-material-design: true
   assets:
     - assets/
+  fonts:
+    - family: Nunito
+      fonts:
+        - asset: assets/Nunito-SemiBold.ttf
+    - family: NunitoLight
+      fonts:
+        - asset: assets/Nunito-ExtraLight.ttf
+    - family: GreatVibes
+      fonts:
+        - asset: assets/GreatVibes-Regular.ttf
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg
