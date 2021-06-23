@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import '../screens/home_page.dart';
+import '../utils/firestore_collection.dart';
 
 class Authentication {
   static Future<FirebaseApp> initializeFirebase({BuildContext context}) async {
@@ -13,6 +13,7 @@ class Authentication {
     User user = FirebaseAuth.instance.currentUser;
 
     if (user != null) {
+      // if already logged in, navigate directly to home page
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
           builder: (context) => HomePage(
@@ -37,11 +38,11 @@ class Authentication {
     if (googleSignInAccount != null) {
       final GoogleSignInAuthentication googleSignInAuthentication =
           await googleSignInAccount.authentication;
-
+      // get credentials
       final AuthCredential credential = GoogleAuthProvider.credential(
           accessToken: googleSignInAuthentication.accessToken,
           idToken: googleSignInAuthentication.idToken);
-      // user = userCredential.user;
+
       try {
         final UserCredential userCredential =
             await auth.signInWithCredential(credential);
@@ -82,11 +83,13 @@ class Authentication {
     );
   }
 
+  // implement sign out
   static Future<void> signOut({BuildContext context}) async {
     final GoogleSignIn googleSignIn = GoogleSignIn();
     try {
       await googleSignIn.signOut();
       await FirebaseAuth.instance.signOut();
+      deleteUser();
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         Authentication.customSnackBar(

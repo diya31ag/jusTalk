@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:teams/screens/home_page.dart';
 import 'package:teams/utils/authentication.dart';
+import '../utils/firestore_collection.dart';
 
 class GoogleSignInButton extends StatefulWidget {
   @override
@@ -37,11 +36,9 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
                 User user =
                     await Authentication.signInWithGoogle(context: context);
 
-                // setState(() {
-                //   isSigningIn = false;
-                // });
-                // print(user == null);
                 if (user != null) {
+                  setUser(user: user);
+                  // After sign in navigate user to home page
                   Navigator.of(context).pushReplacement(
                     MaterialPageRoute(
                       builder: (context) => HomePage(
