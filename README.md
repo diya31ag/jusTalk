@@ -54,3 +54,39 @@ Flutter is an open-source Software Development Kit (SDK) used to develop high-pe
 
 The most crucial part is, from a small button to padding or font, everything in Flutter is a widget. These widgets can be combined to form an amazing layout with beautiful UI/UX. There are inbuilt as well as customizable widgets which makes the building of the app faster. 
 
+<img src="/assets/signIn.jpeg" height=500>
+
+<img src="/assets/home_page.jpeg" height=500> 
+
+<img src="/assets/profile_page.jpeg" height=500>
+
+<img src="/assets/calling.jpeg" height=500> 
+<!-- ![sign In](/assets/signIn.jpeg)
+![home page](/assets/home_page.jpeg)
+![profile](/assets/profile_page.jpeg)
+![calling page screen](/assets/calling.jpeg) -->
+
+### Backend Development
+
+Firebase is used as the backend for this app. To connect Flutter with Firebase, FlutterFire has a set of plugins that can be used. I have used the Authentication and Cloud Storage services of Firebase. Cloud Firestore is a NoSQL database that stores data in the form of Collections and Documents. For this project, I have made following collections:
+
+**user:** to store user details
+
+**call:** to store current running call details
+
+### Working of the app
+
+**Calling User:** 
+
+First of all, the user sees sign in page where I have added google sign authentication method. After sign in, user is routed to home page
+Here There is a button to make a video a video call. If we click there, user sees two fields, enter the reciever mail id and enter your channel name. Once both fields are filled, video call started from user side.
+
+**Reciever:**
+
+When reciever logged in the app, he sees a feed of calling user, where his name and email I'd is written and a button to receive the call. On clicking the button, he is also connected to the call.
+
+In the call users can mute or unmute themselves or cut the call.
+
+### Conclusion
+
+This application enhances Real Time Communication and can help people to connect virtually throughout the world. 
